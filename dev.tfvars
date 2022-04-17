@@ -1,6 +1,6 @@
-region                = "eu-east-1" # Ireland
-availability_zone_one = "eu-east-1a"
-availability_zone_two = "eu-east-1b"
+region                = "us-east-1"
+availability_zone_one = "us-east-1a"
+availability_zone_two = "us-east-1b"
 ami                   = "ami-04505e74c0741db8d"
 vpc_cidr              = "10.0.0.0/16"
 name                  = "dev"

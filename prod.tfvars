@@ -1,7 +1,7 @@
-region                = "eu-central-1" # Lindon
-availability_zone_one = "eu-central-1a"
-availability_zone_two = "eu-central-1b"
-ami                   = "ami-0d527b8c289b4af7f"
+region                = "us-east-2"
+availability_zone_one = "us-east-2a"
+availability_zone_two = "us-east-2b"
+ami                   = "ami-0fb653ca2d3203ac1"
 vpc_cidr              = "192.0.0.0/16"
 name                  = "prod"
 public_subnet1_cidr   = "192.0.0.0/24"
