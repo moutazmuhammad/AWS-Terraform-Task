@@ -3,7 +3,7 @@ resource "aws_instance" "public1" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.public_access.id]
   subnet_id              = module.network.public_subnet1
-  key_name               = "mypublic-key_pair"
+  key_name               = "newkey"
   tags = {
     Name = "ec2-public-1"
   }
@@ -31,11 +31,20 @@ resource "aws_instance" "private1" {
   vpc_security_group_ids      = [aws_security_group.private_access.id]
   subnet_id                   = module.network.private_subnet1
   associate_public_ip_address = false # to privent public ip
-  key_name                    = "mypublic-key_pair"
+  key_name                    = "newkey"
   tags = {
     Name = "ec2-private-1"
   }
-  user_data = file("private.sh")
+  # user_data = file("private.sh")
+  user_data = <<-EOF
+                #!/bin/bash
+                  apt update -y
+                  apt install -y nginx
+                  systemctl start nginx
+                  systemctl enable nginx
+                  echo "PRIVATE" > /var/www/html/index.nginx-debian.html
+  EOF
+
 }
 
 # resource "aws_instance" "private2" {

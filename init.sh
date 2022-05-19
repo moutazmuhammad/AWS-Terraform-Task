@@ -1,6 +1,6 @@
-#! /bin/bash
-sudo yum update -y
-sudo yum install -y httpd
-sudo systemctl start httpd.service
-sudo systemctl enable httpd.service
-echo "The page was created by the user data by Moutaz Muhammad" > /var/www/html/index.html
+#!/bin/bash
+sudo apt update -y
+sudo apt install -y nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx
+echo "The page was created by the user data by Moutaz Muhammad" > /var/www/html/index.nginx-debian.html

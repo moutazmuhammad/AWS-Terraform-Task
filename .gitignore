@@ -1,4 +1,4 @@
 .terraform*
-my_private.pem
+newkey.pem
 random
 terraform*
