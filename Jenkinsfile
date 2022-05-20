@@ -1,5 +1,6 @@
 pipeline {
   agent any
+  
     tools {
        terraform 'terraform'
     }
@@ -53,19 +54,18 @@ pipeline {
 
                 chmod +x ~/.ssh/myKey.pem
                     """
-              }
+            }
           }
         }
-              stage('Run Ansible'){
-                steps{
-                  withAWS(credentials: 'awsCredential') {
-                      sh 'ansible-playbook -i ansible/inventory ansible/playbook.yaml' 
-                  }
-                }
-              }
+      
+        stage('Run Ansible'){
+          steps{
+            withAWS(credentials: 'awsCredential') {
+                sh 'ansible-playbook -i ansible/inventory ansible/playbook.yaml' 
+            }
+          }
+        }
 
-          }
-        }
     }
     
 }
