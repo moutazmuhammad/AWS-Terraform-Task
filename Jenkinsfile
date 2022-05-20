@@ -25,6 +25,16 @@ pipeline {
                 }
           }
         }
+
+        stage('Create inventory of ansible'){
+          steps{
+             withAWS(credentials: 'awsCredential') {
+               sh 'chmod +x ./ansible/create_inventory.sh'
+               sh './ansible/create_inventory.sh'
+               sh 'ansible-playbook -i ansible/inventory ansible/playbook'   
+              }
+          }
+        }
     }
     
 }

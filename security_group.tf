@@ -58,7 +58,7 @@ resource "aws_security_group" "private_access" {
     from_port   = 3000
     to_port     = 3000
     protocol    = "tcp"
-    cidr_blocks = [module.network.vpc_cidr]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -105,7 +105,7 @@ resource "aws_security_group" "elasticache_sg" {
     cidr_blocks = [module.network.vpc_cidr]
   }
 
-  
+
   ingress {
     description = "custom from VPC"
     from_port   = 6379

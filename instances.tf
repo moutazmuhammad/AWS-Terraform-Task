@@ -11,7 +11,7 @@ resource "aws_instance" "public1" {
     command = "echo ${self.public_ip} >> random"
   }
 
-  user_data = file("init.sh")
+  # user_data = file("init.sh")
 
 }
 
@@ -36,14 +36,15 @@ resource "aws_instance" "private1" {
     Name = "ec2-private-1"
   }
   # user_data = file("private.sh")
-  user_data = <<-EOF
-                #!/bin/bash
-                  apt update -y
-                  apt install -y nginx
-                  systemctl start nginx
-                  systemctl enable nginx
-                  echo "PRIVATE" > /var/www/html/index.nginx-debian.html
-  EOF
+  # user_data = <<-EOF
+  #               #!/bin/bash
+  #                 sudo apt update -y
+  #                 sudo apt install -y nginx
+  #                 sudo systemctl start nginx
+  #                 sudo systemctl enable nginx
+  #                 sudo chmod 777 /var/www/html/index.nginx-debian.html
+  #                 echo "The page was created by the user data by Moutaz Muhammad" > /var/www/html/index.nginx-debian.html
+  # EOF
 
 }
 
