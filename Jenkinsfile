@@ -7,8 +7,6 @@ pipeline {
         stage('terraform format') {
             steps{
                 withAWS(credentials: 'awsCredential') {
-                sh 'terraform workspace new dev'
-                sh 'terraform workspace select dev'
                 sh 'terraform fmt'
                 }
             }
@@ -23,14 +21,14 @@ pipeline {
         stage('terraform plan'){
           steps{
              withAWS(credentials: 'awsCredential') {
-               sh 'terraform --var-file dev.tfvars'
+               sh 'terraform plan --var-file dev.tfvars'
              }
           }
         }
         stage('terraform build and using outputs'){
           steps{
              withAWS(credentials: 'awsCredential') {
-                sh 'terraform --auto-approve --var-file dev.tfvars '
+                sh 'terraform apply --auto-approve --var-file dev.tfvars '
                 }
           }
         }
