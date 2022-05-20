@@ -4,13 +4,6 @@ pipeline {
        terraform 'terraform'
     }
     stages {
-        stage('terraform format') {
-            steps{
-                withAWS(credentials: 'awsCredential') {
-                sh 'terraform fmt'
-                }
-            }
-        }
         stage('terraform init'){
           steps{
              withAWS(credentials: 'awsCredential') {
