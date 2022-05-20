@@ -55,7 +55,7 @@ pipeline {
                     """
               }
 
-              stage('terraform build and using outputs'){
+              stage('Run Ansible'){
                 steps{
                   withAWS(credentials: 'awsCredential') {
                       sh 'ansible-playbook -i ansible/inventory ansible/playbook.yaml' 
