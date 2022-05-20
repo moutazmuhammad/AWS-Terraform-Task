@@ -34,6 +34,7 @@ pipeline {
           steps{
              withAWS(credentials: 'awsCredential') {
                sh """
+               chmod 400 ~/.ssh/myKey.pem
                echo "
                 Host private
                     Port 22
@@ -50,9 +51,7 @@ pipeline {
                     User ubuntu
                     StrictHostKeyChecking no
                     UserKnownHostsFile /dev/null
-                    IdentityFile ~/.ssh/myKey.pem " > ~/.ssh/config 
-
-                chmod +x ~/.ssh/myKey.pem
+                    IdentityFile ~/.ssh/myKey.pem " > ~/.ssh/config       
                     """
             }
           }
