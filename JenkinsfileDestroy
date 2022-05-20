@@ -1,0 +1,23 @@
+pipeline {
+  agent any
+    tools {
+       terraform 'terraform'
+    }
+    stages {
+        stage('terraform init'){
+          steps{
+             withAWS(credentials: 'awsCredential') {
+                sh 'terraform init'
+                }
+          }
+        }
+        stage('terraform Destroy'){
+          steps{
+             withAWS(credentials: 'awsCredential') {
+                sh 'terraform destroy --auto-approve --var-file dev.tfvars '
+                }
+          }
+        }
+    }
+    
+}
