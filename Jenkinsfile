@@ -54,7 +54,8 @@ pipeline {
                 chmod +x ~/.ssh/myKey.pem
                     """
               }
-
+          }
+        }
               stage('Run Ansible'){
                 steps{
                   withAWS(credentials: 'awsCredential') {
