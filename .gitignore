@@ -2,3 +2,11 @@
 newkey.pem
 random
 terraform*
+
+
+# sed -i "s#.*ansible_host.*#ansible_host: $(terraform -chdir=./terraform  output -raw puplic-ip-ec2 )#" ./ansible/group_vars/proxy.yaml 
+
+
+# jump host ssh
+
+# https://blog.ruanbekker.com/blog/2020/10/26/use-a-ssh-jump-host-with-ansible/
