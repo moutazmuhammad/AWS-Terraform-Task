@@ -7,6 +7,8 @@ pipeline {
         stage('terraform format') {
             steps{
                 withAWS(credentials: 'awsCredential') {
+                sh 'terraform workspace new dev'
+                sh 'terraform workspace select dev'
                 sh 'terraform fmt'
                 }
             }
