@@ -50,11 +50,7 @@ Host bastion
 """
 
 sh """
-echo -e "[deployment]
-server-a ansible_host=`terraform -chdir=./terraform output -raw private_Instace_IP` ansible_user=ubuntu ansible_ssh_private_key_file=/var/jenkins_home/.ssh/privateKey.pem
-[deployment:vars]
-ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand=\"ssh -W %h:%p -q ubuntu@bastion\"'" > ansible/inventory 
-
+sed -i "s#.*ansible_host.*#ansible_host: $(terraform -chdir=./terraform  output -raw private_Instace_IP) ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/privateKey.pem#" /var/jenkins_home/workspace/terraform_apply/ansible/inventory
 """
             }
           }
