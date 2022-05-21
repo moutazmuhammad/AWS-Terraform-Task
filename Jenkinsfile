@@ -62,7 +62,9 @@ ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/
         stage('Run Ansible'){
           steps{
             withAWS(credentials: 'awsCredential') {
-                sh 'ansible-playbook -i ansible/inventory ansible/playbook.yaml' 
+                sh 'cd ansible/'
+                sh 'ansible --version'
+                sh 'ansible-playbook -i inventory playbook.yaml' 
             }
           }
         }
