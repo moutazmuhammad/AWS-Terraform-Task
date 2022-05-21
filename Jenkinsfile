@@ -53,7 +53,7 @@ sh """
 echo "[deployment]
 server-a ansible_host=`terraform -chdir=./terraform output -raw private_Instace_IP` ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/privateKey.pem
 [deployment:vars]
-ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q bastion"' " > ansible/inventory
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -A -i ~/.ssh/privateKey.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p -q ubuntu@bastion"' " > ansible/inventory
 """
             }
           }
@@ -70,3 +70,5 @@ ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/
     }
     
 }
+
+
