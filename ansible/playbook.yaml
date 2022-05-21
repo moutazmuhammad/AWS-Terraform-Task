@@ -3,14 +3,14 @@
   gather_facts: false
   tasks:
   - name: updating all packages 
-    yum:
+    apt:
       update_cache: yes
   - name: installing docker 
-    yum: 
+    apt: 
       name: docker
       state: latest
   - name: installing Java
-    yum:
+    apt:
       name: java-1.8.0-openjdk
       state: present
   - name: Starting docker service
@@ -38,6 +38,6 @@
       src:  agent.jar
       dest: /home/ubuntu/bin/agent.jar
   - name: install git 
-    yum:
+    apt:
       name: git
       state: latest
