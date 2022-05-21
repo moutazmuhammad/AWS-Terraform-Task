@@ -57,7 +57,7 @@ pipeline {
               server-a ansible_host=`terraform -chdir=./terraform output -raw private_Instace_IP` ansible_user=ubuntu ansible_ssh_private_key_file=/var/jenkins_home/.ssh/privateKey.pem
               [proxy]
               ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q bastion"'
-              " > /var/jenkins_home/workspace/terraform/ansible/inventory 
+              " > ./ansible/inventory 
               """
             }
           }
