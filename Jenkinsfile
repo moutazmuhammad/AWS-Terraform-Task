@@ -49,8 +49,8 @@ Host bastion
 " > ~/.ssh/config 
 """
 
-                sh 'chmod +x editInventory.sh'
-                sh './editInventory.sh'
+                sh 'chmod +x edit_inventory.sh'
+                sh './edit_inventory.sh'
             }
           }
         }
