@@ -1,5 +1,5 @@
 - name: Configure a slave Jenkins
-  hosts: slaves
+  hosts: deployment
   gather_facts: false
   tasks:
   - name: updating all packages 
