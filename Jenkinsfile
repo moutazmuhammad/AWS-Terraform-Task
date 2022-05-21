@@ -33,7 +33,6 @@ pipeline {
         stage('Configer IPs of public and private ec2 for inventory on master node'){
           steps{
              withAWS(credentials: 'awsCredential') {
-<<<<<<< HEAD
 sh 'chmod 400 ~/.ssh/privateKey.pem'
 
 sh """
