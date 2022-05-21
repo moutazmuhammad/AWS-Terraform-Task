@@ -46,7 +46,7 @@ pipeline {
                 Host bastion
                     HostName `terraform -chdir=./terraform output -raw Public_Instace_IP`
                     User ubuntu
-                    IdentityFile /var/jenkins_home/.ssh/privateKey.pem " > ~/.ssh/config 
+                    IdentityFile /var/jenkins_home/.ssh/privateKey.pem " > /var/jenkins_home/.ssh/config 
               """
 
 
