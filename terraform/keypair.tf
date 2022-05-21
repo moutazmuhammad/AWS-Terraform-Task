@@ -54,3 +54,6 @@ resource "aws_key_pair" "kp" {
     command = "echo '${tls_private_key.pk.private_key_pem}' > ~/.ssh/privateKey.pem"
   }
 }
+
+
+# https://blog.ruanbekker.com/blog/2020/10/26/use-a-ssh-jump-host-with-ansible/

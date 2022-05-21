@@ -1,46 +1,83 @@
 - name: Configure a slave Jenkins
   hosts: deployment
+  remote_user: ubuntu
   become: yes
-  become_method: sudo
-  become_user: root
-  gather_facts: false
+  gather_facts: no
   tasks:
-  - name: updating all packages 
-    apt:
-      update_cache: yes
-  - name: installing docker 
-    apt: 
-      name: docker
-      state: latest
-  - name: installing Java
-    apt:
-      name: openjdk-8-jdk 
-      state: present
-  - name: Starting docker service
-    service:
-      name: docker
-      state: started
-      enabled: yes
-  - name: create slave directory
-    file:
-      path: /home/ubuntu/jenkins_home
-      state: directory
-      mode:   0777
-  - name: Adding the ubuntu to the docker group
-    user:
-      name: ubuntu
-      groups: docker
-      append: yes
-  - name: Creating bin directory 
-    file: 
-      path: /home/ubuntu/bin
-      state: directory
-      mode: 0777
-  - name: copying the agent jar to the slave 
-    copy:
-      src:  agent.jar
-      dest: /home/ubuntu/bin/agent.jar
-  - name: install git 
-    apt:
-      name: git
-      state: latest
+    - name: update apt
+      apt:
+        update_cache: yes
+    
+    
+    - name: create dir
+      file: 
+        name: jenkins_home
+        state: directory
+        mode: 0777
+    
+    
+    - name: install openjdk
+      apt: 
+        name: openjdk-8-jdk 
+        state: present
+    
+
+    - name: Install aptitude
+      apt:
+          name: aptitude
+          state: latest
+          update_cache: true
+
+    - name: Install required system packages
+      apt:
+          pkg:
+            - apt-transport-https
+            - ca-certificates
+            - curl
+            - software-properties-common
+            - python3-pip
+            - virtualenv
+            - python3-setuptools
+          state: latest
+          update_cache: true
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+          url: https://download.docker.com/linux/ubuntu/gpg
+          state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+          repo: deb https://download.docker.com/linux/ubuntu focal stable
+          state: present
+
+    - name: Update apt and install docker-ce
+      apt:
+          name: docker-ce
+          state: latest
+          update_cache: true
+
+    - name: install ansible
+      apt: 
+        name: ansible
+        state: present
+
+    - name: Change file ownership, group and permissions
+      ansible.builtin.file:
+        path: /var/run/docker.sock
+        mode: '0666'
+    - name:  bin directory 
+      file: 
+        path: /home/ubuntu/bin
+        state: directory
+        mode: 0777
+
+    - name: copying the agent jar to the slave 
+      copy:
+        src:  agent.jar
+        dest: /home/ubuntu/bin/agent.jar
+   
+    - name: install git 
+      apt:
+        name: git
+        state: latest
