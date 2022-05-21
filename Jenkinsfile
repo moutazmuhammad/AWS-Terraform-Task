@@ -38,7 +38,7 @@ pipeline {
                 echo "
                 Host private
                     Port 22
-                    HostName `terraform -chdir=./terraform apply output -raw private_Instace_IP --var-file dev.tfvars`
+                    HostName `terraform -chdir=./terraform output -raw private_Instace_IP`
                     User ubuntu
                     IdentityFile ~/.ssh/myKey.pem
                     StrictHostKeyChecking no
@@ -47,7 +47,7 @@ pipeline {
                     ServerAliveCountMax 30
 
                 Host bastion
-                    HostName `terraform -chdir=./terraform apply output -raw Public_Instace_IP --var-file dev.tfvars`
+                    HostName `terraform -chdir=./terraform output -raw Public_Instace_IP`
                     User ubuntu
                     StrictHostKeyChecking no
                     UserKnownHostsFile /dev/null
