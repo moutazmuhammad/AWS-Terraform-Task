@@ -64,7 +64,7 @@ ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/
             withAWS(credentials: 'awsCredential') {
                 sh 'cd ansible/'
                 sh 'ansible --version'
-                sh 'ansible-playbook -i ./inventory ./playbook.yaml' 
+                sh 'ansible-playbook -i /var/jenkins_home/workspace/terraform_apply/ansible/inventory /var/jenkins_home/workspace/terraform_apply/ansible/playbook.yaml' 
             }
           }
         }
