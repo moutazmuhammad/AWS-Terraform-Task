@@ -66,6 +66,7 @@
       ansible.builtin.file:
         path: /var/run/docker.sock
         mode: '0666'
+        
     - name:  bin directory 
       file: 
         path: /home/ubuntu/bin
