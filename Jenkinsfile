@@ -60,7 +60,7 @@ pipeline {
         stage('Run Ansible'){
           steps{
             withAWS(credentials: 'awsCredential') {
-                sh 'ansible-playbook -i ansible/inventory ansible/playbook.yaml' 
+                sh 'ansible-playbook -i ansible/inventory.ini ansible/playbook.yaml' 
             }
           }
         }
