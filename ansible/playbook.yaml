@@ -14,7 +14,7 @@
       state: latest
   - name: installing Java
     apt:
-      name: java-1.8.0-openjdk
+      name: openjdk-8-jdk 
       state: present
   - name: Starting docker service
     service:
