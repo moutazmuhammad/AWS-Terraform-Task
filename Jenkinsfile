@@ -36,9 +36,8 @@ pipeline {
               sh """
               chmod 400 ~/.ssh/myKey.pem
                 echo "
-                Host private
+                Host *
                     Port 22
-                    HostName `terraform -chdir=./terraform output private_Instace_IP`
                     User ubuntu
                     IdentityFile ~/.ssh/myKey.pem
                     StrictHostKeyChecking no
@@ -47,11 +46,22 @@ pipeline {
                     ServerAliveCountMax 30
 
                 Host bastion
-                    HostName `terraform -chdir=./terraform output Public_Instace_IP`
+                    HostName `terraform -chdir=./terraform output -raw Public_Instace_IP`
                     User ubuntu
                     StrictHostKeyChecking no
                     UserKnownHostsFile /dev/null
-                    IdentityFile ~/.ssh/myKey.pem " > ~/.ssh/config 
+                    IdentityFile ~/.ssh/privateKey.pem " > ~/.ssh/config 
+              """
+
+
+              sh """
+                echo "
+                [slaves]
+                server-a ansible_host=`terraform -chdir=./terraform output -raw private_Instace_IP`
+                ansible_user=ubuntu
+                ansible_ssh_private_key_file=~/.ssh/privateKey.pem
+                [proxy]
+                ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q bastion"' " > ansible/inventory
               """
             }
           }
@@ -60,7 +70,7 @@ pipeline {
         stage('Run Ansible'){
           steps{
             withAWS(credentials: 'awsCredential') {
-                sh 'ansible-playbook -i ansible/inventory.ini ansible/playbook.yaml' 
+                sh 'ansible-playbook -i ansible/inventory ansible/playbook.yaml' 
             }
           }
         }
