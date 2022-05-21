@@ -42,7 +42,7 @@ pipeline {
                     User ubuntu
                     IdentityFile ~/.ssh/myKey.pem
                     StrictHostKeyChecking no
-                    UserKnownHostsFile /dev/null-chdir=./terraform apply
+                    UserKnownHostsFile /dev/null
                     ServerAliveInterval 60
                     ServerAliveCountMax 30
 
