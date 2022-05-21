@@ -44,35 +44,25 @@ echo "Host *
     ServerAliveCountMax 30
 Host bastion
     HostName `terraform -chdir=./terraform output -raw Public_Instace_IP`
-    User bastion
+    User ubuntu
     IdentityFile ~/.ssh/privateKey.pem
 " > ~/.ssh/config 
 """
 
 sh """
-echo "[deployment]
+echo -e "[deployment]
 server-a ansible_host=`terraform -chdir=./terraform output -raw private_Instace_IP` ansible_user=ubuntu ansible_ssh_private_key_file=/var/jenkins_home/.ssh/privateKey.pem
 [deployment:vars]
-ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q ubuntu@bastion"' " > ansible/inventory
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand=\"ssh -W %h:%p -q ubuntu@bastion\"'" > ansible/inventory 
+
 """
             }
           }
         }
-      
+
         stage('Run Ansible'){
           steps{
-            withAWS(credentials: 'awsCredential') {
-                sh 'ansible --version'
-                ansiblePlaybook( 
-                    playbook: '/var/jenkins_home/workspace/terraform_apply/ansible/playbook.yaml',
-                    inventory: '/var/jenkins_home/workspace/terraform_apply/ansible/inventory', 
-                    credentialsId: 'ansible-ssh',
-                    become : true,
-                    becomeUser:'root',
-                    hostKeyChecking:false,
-                    installation:'ansible',
-                    colorized: true) 
-            }
+                    sh ' ansible-playbook -i /var/jenkins_home/workspace/terraform_apply/ansible/inventory /var/jenkins_home/workspace/terraform_apply/ansible/playbook.yaml'
           }
         }
 
