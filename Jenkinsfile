@@ -33,9 +33,9 @@ pipeline {
         stage('Configer IPs of public and private ec2 for inventory on master node'){
           steps{
              withAWS(credentials: 'awsCredential') {
-              sh 'chmod 400 ~/.ssh/myKey.pem'
               sh """
-               echo '
+              chmod 400 ~/.ssh/myKey.pem
+                echo "
                 Host private
                     Port 22
                     HostName $(terraform output -raw private_Instace_IP)
@@ -51,7 +51,7 @@ pipeline {
                     User ubuntu
                     StrictHostKeyChecking no
                     UserKnownHostsFile /dev/null
-                    IdentityFile ~/.ssh/myKey.pem ' > ~/.ssh/config 
+                    IdentityFile ~/.ssh/myKey.pem " > ~/.ssh/config 
               """
             }
           }
