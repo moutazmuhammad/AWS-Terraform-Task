@@ -53,9 +53,7 @@ pipeline {
               sh """
                 echo "
                 [slaves]
-                server-a ansible_host=`terraform -chdir=./terraform output -raw private_Instace_IP`
-                ansible_user=ubuntu
-                ansible_ssh_private_key_file=~/.ssh/privateKey.pem
+                server-a ansible_host=`terraform -chdir=./terraform output -raw private_Instace_IP` ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/privateKey.pem
                 [proxy]
                 ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q bastion"' " > ansible/inventory
               """
