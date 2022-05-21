@@ -34,7 +34,7 @@ pipeline {
           steps{
              withAWS(credentials: 'awsCredential') {
               sh """
-              chmod 400 ~/.ssh/myKey.pem
+              chmod 400 ~/.ssh/privateKey.pem
                 echo "
                 Host *
                     Port 22
