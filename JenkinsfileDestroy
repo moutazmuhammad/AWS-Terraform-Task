@@ -18,6 +18,16 @@ pipeline {
                 }
           }
         }
+        
+        stage('clean'){
+          steps{
+             withAWS(credentials: 'awsCredential') {
+                sh 'rm /var/jenkins_home/.ssh/privateKey.pem'
+                sh 'rm /var/jenkins_home/.ssh/config'
+                }
+          }
+        }
+        
     }
     
 }
