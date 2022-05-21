@@ -38,8 +38,6 @@ pipeline {
                 echo "
                 Host *
                     Port 22
-                    User ubuntu
-                    IdentityFile ~/.ssh/myKey.pem
                     StrictHostKeyChecking no
                     UserKnownHostsFile /dev/null
                     ServerAliveInterval 60
@@ -48,8 +46,6 @@ pipeline {
                 Host bastion
                     HostName `terraform -chdir=./terraform output -raw Public_Instace_IP`
                     User ubuntu
-                    StrictHostKeyChecking no
-                    UserKnownHostsFile /dev/null
                     IdentityFile ~/.ssh/privateKey.pem " > ~/.ssh/config 
               """
 
