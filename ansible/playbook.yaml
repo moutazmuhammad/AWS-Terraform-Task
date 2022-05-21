@@ -1,5 +1,8 @@
 - name: Configure a slave Jenkins
   hosts: deployment
+  become: yes
+  become_method: sudo
+  become_user: root
   gather_facts: false
   tasks:
   - name: updating all packages 
