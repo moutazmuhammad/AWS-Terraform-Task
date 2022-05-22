@@ -1,7 +1,7 @@
 # Jenkins Pipeline
 
 > Note: This code is used to provision and configure an infrasturcture on AWS.
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/8.png?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/1.jpg?raw=true)
 
 ## Preparing Jenkins master:
 * Clone The repo:
@@ -24,11 +24,11 @@ docker run -d -it -v /var/run/docker.sock:/var/run/docker.sock -v jenkins-data:/
 - pipeline AWS Steps
 - Ansible
 - Terraform
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/8.png?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/2.jpg?raw=true)
 * Configure Terraform in Global Tool Configuration:
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/3.jpg?raw=true)
 * Add: Global credentials:
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/4.jpg?raw=true)
 
 > Note: Create bucket named "backend-course-terraform" from consol 
 > Note: Create Dynamodb table named "backend". The table must have a partition key named LockID with type of String 
@@ -47,23 +47,23 @@ mkdir ~/.ssh
 ```sh
 https://github.com/moutazmuhammad/AWS-Terraform-Task.git
 ```
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/5.jpg?raw=true)
 * Build the Pipeline
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/6.jpg?raw=true)
 
 ## ADD the private EC2 as a slave for Jenkins:
 * Choose Launch agent via execution of a command on the master. In Lasunch command, Write the following command:
 ```sh
 ssh -T -o ProxyCommand="ssh -W %h:%p -q bastion" -t  -i ~/.ssh/privatekey.pem ubuntu@private_ip_of_instance exec  java -jar ~/bin/agent.jar
 ```
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/7.jpg?raw=true)
 
 * Save and Launch the agent.
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/8.jpg?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/9.jpg?raw=true)
 
 > Note: In order to get past Jenkins security feature, you will need to approve your script. Go to Manage Jenkins -> In-process Script Approval. In that screen, you will see the script that you are trying to execute. There should be an approve button that you'll need to click to approve that script.
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/10.jpg?raw=true)
 
 
 ## For Nodejs App:
@@ -74,14 +74,14 @@ https://github.com/moutazmuhammad/NodeJs_CI-CD.git
 
 > Note: Add the RDS endpoint and the elasticache redis endpoint in the Jenkinsfile and push it to the repo. In Jenkins add the RDS credentials and name RDS_CRED
 
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/11.jpg?raw=true)
 * Build the Pipeline
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/12.jpg?raw=true)
 
 ## The result:
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
-![Build Status](https://github.com/moutazmuhammad/GCP-Terraform-Kubernetes-Task/blob/main/img/9.png?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/13.jpg?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/14.jpg?raw=true)
+![Build Status](https://github.com/moutazmuhammad/AWS-Terraform-Task/blob/main/img/15.jpg?raw=true)
 
 
 
