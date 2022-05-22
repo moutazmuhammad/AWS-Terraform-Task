@@ -19,7 +19,7 @@ docker run -d -it -v /var/run/docker.sock:/var/run/docker.sock -v jenkins-data:/
 * Access the Jenkins server on http://localhost:8085
 
 ## Requirements:
-* Install Plugins:
+Install Plugins:
 - Cloudbees AWS credentials
 - pipeline AWS Steps
 - Ansible
