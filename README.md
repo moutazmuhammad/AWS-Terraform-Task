@@ -36,7 +36,6 @@ docker run -d -it -v /var/run/docker.sock:/var/run/docker.sock -v jenkins-data:/
 * Access Master node and create dir ~/.ssh/
 ```sh
 docker exec -it 09aa2d368ee9 /bin/bash
-mkdir ~/.ssh
 ```
 ```sh
 mkdir ~/.ssh
