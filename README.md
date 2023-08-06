@@ -19,7 +19,7 @@ docker build -f dockerfile_master_node -t  moutazmuhammad/master_node .
 ```
 * Run a docker container:
 ```sh
-docker run -d -it -v /var/run/docker.sock:/var/run/docker.sock -v jenkins-data:/var/jenkins_home  -p 8085:8080 moutazmuhammad/master_node
+docker run -d -it  --restart always -v /var/run/docker.sock:/var/run/docker.sock -v jenkins-data:/var/jenkins_home  -p 8085:8080 moutazmuhammad/master_node
 ```
 * Access the Jenkins server on http://localhost:8085
 
