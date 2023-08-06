@@ -47,11 +47,11 @@ resource "tls_private_key" "pk" {
 }
 
 resource "aws_key_pair" "kp" {
-  key_name   = "privateKey"       # Create "privateKey" to AWS!!
+  key_name   = "privatekey"       # Create "privateKey" to AWS!!
   public_key = tls_private_key.pk.public_key_openssh
 
   provisioner "local-exec" { # Create "privateKey.pem" to your Master Node!!
-    command = "echo '${tls_private_key.pk.private_key_pem}' > ~/.ssh/privateKey.pem"
+    command = "echo '${tls_private_key.pk.private_key_pem}' > ~/.ssh/privatekey.pem"
   }
 }
 
