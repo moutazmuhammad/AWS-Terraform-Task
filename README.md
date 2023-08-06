@@ -15,7 +15,7 @@ git clone git@github.com:moutazmuhammad/AWS-Terraform-Task.git
 ```
 * Build the Dockerfile of Jenkins (In DockerFiles Folder):
 ```sh
-docker build -f dockerfile_master_node  moutazmuhammad/master_node .
+docker build -f dockerfile_master_node -t  moutazmuhammad/master_node .
 ```
 * Run a docker container:
 ```sh
