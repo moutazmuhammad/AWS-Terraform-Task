@@ -38,14 +38,6 @@ Install Plugins:
 > Note: Create bucket named "backend-course-terraform" from consol 
 > Note: Create Dynamodb table named "backend". The table must have a partition key named LockID with type of String 
 
-* Access Master node and create dir ~/.ssh/
-```sh
-docker exec -it 09aa2d368ee9 /bin/bash
-```
-```sh
-mkdir ~/.ssh
-```
-
 ## Creating the Infrastructures:
 * Create a new Item of type pipeline: using the repo link
 ```sh
