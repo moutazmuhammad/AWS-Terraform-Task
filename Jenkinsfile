@@ -33,7 +33,7 @@ pipeline {
         stage('Configer IPs of public and private ec2 for inventory on master node'){
           steps{
              withAWS(credentials: 'awsCredential') {
-sh 'chmod 400 ~/.ssh/privateKey.pem'
+sh 'chmod 400 ~/.ssh/privatekey.pem'
 
 sh """
 echo "Host *
@@ -45,7 +45,7 @@ echo "Host *
 Host bastion
     HostName `terraform -chdir=./terraform output -raw Public_Instace_IP`
     User ubuntu
-    IdentityFile ~/.ssh/privateKey.pem
+    IdentityFile ~/.ssh/privatekey.pem
 " > ~/.ssh/config 
 """
 
